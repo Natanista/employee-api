@@ -16,23 +16,29 @@ public class EmployeeController {
     private EmployeeServiceImpl employeeServiceImpl;
 
     @GetMapping
-    public ResponseEntity<List<Employee>> findALlEmployees(){
-        return ResponseEntity.ok(employeeServiceImpl.findAllEmployees());
+    public ResponseEntity<List<Employee>> findALlEmployees() {
+        return employeeServiceImpl.findAllEmployees();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEmployee(
             @PathVariable("id") Integer id
-    ){
-        employeeServiceImpl.deleteEployee(id);
-        return ResponseEntity.ok().build();
+    ) {
+        return employeeServiceImpl.deleteEployee(id);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Employee> updateEmployee(
             @PathVariable("id") Integer id,
             @RequestBody Employee employee
-    ){
-    return ResponseEntity.ok(employeeServiceImpl.updateEmployee(id, employee));
+    ) {
+        return employeeServiceImpl.updateEmployee(id, employee);
+    }
+
+    @PostMapping
+    public ResponseEntity<Employee> saveEmployee(
+            @RequestBody Employee employee
+    ) {
+        return employeeServiceImpl.saveEmployee(employee);
     }
 }
